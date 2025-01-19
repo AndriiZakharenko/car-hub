@@ -6,7 +6,7 @@
 
 ### Stack
 
-- HTML (Atomic)
+- HTML (BEM, Atomic)
 - CSS (Tailwind)
 - JS
 - Adaptive
