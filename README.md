@@ -15,6 +15,7 @@
 - Next (15)
 - Vercel
 - Typescript
+- Headless UI
 
 ### Tools
 
