@@ -36,7 +36,7 @@ const CarCard = ({ car }: CarCardProps) => {
       </p>
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src={"/hero.png"}
+          src="/hero.png"
           alt="car model"
           fill
           priority
@@ -69,15 +69,19 @@ const CarCard = ({ car }: CarCardProps) => {
 
         <div className="car-card__btn-container">
           <CustomButton
-            title='View More'
-            containerStyles='w-full py-[16px] rounded-full bg-primary-blue'
-            textStyles='text-white text-[14px] leading-[17px] font-bold'
-            rightIcon='/right-arrow.svg'
+            title="View More"
+            containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
+            textStyles="text-white text-[14px] leading-[17px] font-bold"
+            rightIcon="/right-arrow.svg"
             handleClick={() => setIsOpen(true)}
           />
         </div>
       </div>
-      <CarDetails isOpen={isOpen} />
+      <CarDetails
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        car={car}
+      />
     </div>
   );
 };
