@@ -7,6 +7,8 @@ import CustomButton from "./CustomButton";
 import { useState } from "react";
 import CarDetails from "./CarDetails";
 
+// import { generateCarImageUrl } from "@/utils/generateCarImageUrl";
+
 interface CarCardProps {
   car: CarProps;
 }
@@ -34,8 +36,10 @@ const CarCard = ({ car }: CarCardProps) => {
           /day
         </span>
       </p>
+
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
+          // src={generateCarImageUrl(car)} // Paied API
           src="/hero.png"
           alt="car model"
           fill
