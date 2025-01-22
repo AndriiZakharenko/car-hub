@@ -16,6 +16,7 @@
 - Vercel
 - Typescript
 - Headless UI
+- fetch (Rapid API)
 
 ### Tools
 

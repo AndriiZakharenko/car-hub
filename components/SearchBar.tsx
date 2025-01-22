@@ -1,6 +1,6 @@
 "use client";
+
 import { useState } from "react";
-import SearchButton from "./SearchButton";
 import SearchManufacturer from "./SearchManufacturer";
 
 const SearchBar = () => {
@@ -11,11 +11,10 @@ const SearchBar = () => {
   return (
     <form className="searchbar" onSubmit={handleSearch}>
       <div className="searchbar__item">
-        <SearchManufacturer
+      <SearchManufacturer
           manufacturer={manufacturer}
           setManuFacturer={setManuFacturer}
         />
-        <SearchButton otherClasses="sm:hidden" />
       </div>
     </form>
   );
