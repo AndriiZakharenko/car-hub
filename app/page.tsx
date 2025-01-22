@@ -1,4 +1,4 @@
-import CustomFilter from "@/components/CustomFilter";
+// import CustomFilter from "@/components/CustomFilter";
 import SearchBar from "@/components/SearchBar";
 import Hero from "@/sections/Hero";
 
