@@ -39,5 +39,5 @@ export interface FilterProps {
 }
 
 export interface HomeProps {
-  searchParams: FilterProps;
+  searchParams: Partial<FilterProps>;
 }
