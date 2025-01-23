@@ -2,10 +2,14 @@
 import CarCard from "@/components/CarCard";
 import SearchBar from "@/components/SearchBar";
 import Hero from "@/sections/Hero";
-import { HomeProps } from "@/types";
+import { FilterProps} from "@/types";
 import { fetchCars } from "@/utils/fetchCars";
 
-export default async function Home({ searchParams }: HomeProps) {
+interface PageProps {
+  searchParams: FilterProps;
+}
+
+export default async function Home({ searchParams }: PageProps) {
   const manufacturer = searchParams.manufacturer || "";
   const year = searchParams.year || 2022;
   const fuel = searchParams.fuel || "";
