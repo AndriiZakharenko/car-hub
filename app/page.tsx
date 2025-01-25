@@ -8,11 +8,13 @@ import { HomeProps } from "@/types";
 import { fetchCars } from "@/utils/fetchCars";
 // import ShowMore from "@/components/ShowMore"; Paid API
 
-export default async function Home({ searchParams }: HomeProps) {
-  const manufacturer = searchParams?.manufacturer || "";
-  const year = searchParams?.year || 2022;
-  const fuel = searchParams?.fuel || "";
-  const model = searchParams?.model || "";
+export default async function Home({ searchParams }: { searchParams: Promise<HomeProps["searchParams"]> }) {
+  const resolvedSearchParams = await searchParams;
+
+  const manufacturer = resolvedSearchParams?.manufacturer || "";
+  const year = Number(resolvedSearchParams?.year) || 2022;
+  const fuel = resolvedSearchParams?.fuel || "";
+  const model = resolvedSearchParams?.model || "";
 
   const allCars = await fetchCars({
     manufacturer,
