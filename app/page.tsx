@@ -1,11 +1,27 @@
-// import CustomFilter from "@/components/CustomFilter";
+import CustomFilter from "@/components/CustomFilter";
 import CarCard from "@/components/CarCard";
 import SearchBar from "@/components/SearchBar";
+import { fuels } from "@/constants/fuels";
+import { yearsOfProduction } from "@/constants/yearsOfProduction";
 import Hero from "@/sections/Hero";
+import { HomeProps } from "@/types";
 import { fetchCars } from "@/utils/fetchCars";
+// import ShowMore from "@/components/ShowMore"; Paid API
 
-export default async function Home() {
-  const allCars = await fetchCars();
+export default async function Home({ searchParams }: { searchParams: Promise<HomeProps["searchParams"]> }) {
+  const resolvedSearchParams = await searchParams;
+
+  const manufacturer = resolvedSearchParams?.manufacturer || "";
+  const year = Number(resolvedSearchParams?.year) || 2022;
+  const fuel = resolvedSearchParams?.fuel || "";
+  const model = resolvedSearchParams?.model || "";
+
+  const allCars = await fetchCars({
+    manufacturer,
+    year,
+    fuel,
+    model,
+  });
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
@@ -22,8 +38,8 @@ export default async function Home() {
         <div className="home__filters">
           <SearchBar />
           <div className="home__filter-container">
-            {/* <CustomFilter title='fuel'/>
-            <CustomFilter title='year'/> */}
+            <CustomFilter title="fuel" options={fuels} />
+            <CustomFilter title="year" options={yearsOfProduction} />
           </div>
         </div>
         {!isDataEmpty ? (
@@ -36,6 +52,10 @@ export default async function Home() {
                 />
               ))}
             </div>
+            {/* <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > allCars.length}
+            /> */}
           </section>
         ) : (
           <div className="home__error-container">
