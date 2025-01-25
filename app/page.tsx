@@ -1,20 +1,18 @@
-// import CustomFilter from "@/components/CustomFilter";
+import CustomFilter from "@/components/CustomFilter";
 import CarCard from "@/components/CarCard";
 import SearchBar from "@/components/SearchBar";
+import { fuels } from "@/constants/fuels";
+import { yearsOfProduction } from "@/constants/yearsOfProduction";
 import Hero from "@/sections/Hero";
-import { FilterProps} from "@/types";
+import { HomeProps } from "@/types";
 import { fetchCars } from "@/utils/fetchCars";
+// import ShowMore from "@/components/ShowMore"; Paid API
 
-interface PageProps {
-  searchParams: FilterProps;
-}
-
-export default async function Home({ searchParams }: PageProps) {
-  const manufacturer = searchParams.manufacturer || "";
-  const year = searchParams.year || 2022;
-  const fuel = searchParams.fuel || "";
-  // const limit = searchParams.limit || 10;
-  const model = searchParams.model || "";
+export default async function Home({ searchParams }: HomeProps) {
+  const manufacturer = searchParams?.manufacturer || "";
+  const year = searchParams?.year || 2022;
+  const fuel = searchParams?.fuel || "";
+  const model = searchParams?.model || "";
 
   const allCars = await fetchCars({
     manufacturer,
@@ -38,8 +36,8 @@ export default async function Home({ searchParams }: PageProps) {
         <div className="home__filters">
           <SearchBar />
           <div className="home__filter-container">
-            {/* <CustomFilter title='fuel'/>
-            <CustomFilter title='year'/> */}
+            <CustomFilter title="fuel" options={fuels} />
+            <CustomFilter title="year" options={yearsOfProduction} />
           </div>
         </div>
         {!isDataEmpty ? (
@@ -52,6 +50,10 @@ export default async function Home({ searchParams }: PageProps) {
                 />
               ))}
             </div>
+            {/* <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > allCars.length}
+            /> */}
           </section>
         ) : (
           <div className="home__error-container">
